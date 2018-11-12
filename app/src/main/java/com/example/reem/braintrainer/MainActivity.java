@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button goButton, button0, button1,button2, button3, playAgainButton;
+    Button button0, button1,button2, button3, playAgainButton;
     TextView sumTextView, scoreTextView, timerTextView, resultTextView;
     ConstraintLayout gameLayout;
 
@@ -41,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
         timerTextView.setText("30s");
         scoreTextView.setText(Integer.toString(score)+"/"+Integer.toString(numberOfQuestions));
         newQuestion();
-        playAgainButton.setVisibility(View.INVISIBLE);
+        playAgainButton.setVisibility(View.GONE);
+        resultTextView.setVisibility(View.GONE);
         resultTextView.setText("");
 
         new CountDownTimer(30100,1000) {
@@ -116,20 +117,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // make the GO button disappear
-    public void go(View view){
-        goButton.setVisibility(View.INVISIBLE);
-        gameLayout.setVisibility(View.VISIBLE);
-
-        playAgain(findViewById(R.id.timerTextView));
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        goButton = findViewById(R.id.goButton);
         sumTextView = findViewById(R.id.sumTextView);
         scoreTextView = findViewById(R.id.scoreTextView);
         timerTextView = findViewById(R.id.timerTextView);
@@ -143,9 +136,9 @@ public class MainActivity extends AppCompatActivity {
         playAgainButton = findViewById(R.id.playAgainButton);
 
         gameLayout = findViewById(R.id.gameLayout);
+        gameLayout.setVisibility(View.VISIBLE);
 
-        goButton.setVisibility(View.VISIBLE);
-        gameLayout.setVisibility(View.INVISIBLE);
+        playAgain(findViewById(R.id.timerTextView));
 
     }
 }
